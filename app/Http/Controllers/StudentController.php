@@ -12,19 +12,27 @@ class StudentController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         //4. The Index API must have pagination.
-        $students = Students::paginate(10);
+        // Check if a search query parameter is present
+        if ($request->has('query')) {
+            $query = $request->input('query');
+
+            //3. Perform a search based on name or email
+            $students = Students::where('name', 'like', "%$query%")
+                ->orWhere('email', 'like', "%$query%")
+                ->paginate(10); // Adjust the pagination as needed
+        } else {
+            // If no search query, return all students
+            $students = Students::paginate(10);
+        }
         
         // Transform the collection using a resource
         $studentsResource = StudentResource::collection($students);
 
         // Return a JSON response with the transformed data and an HTTP status code
         return response()->json($studentsResource, 200);
-
-        //return StudentResource::collection(Students::all());
-        //return Student::all();
     }
 
     /**
@@ -82,19 +90,32 @@ class StudentController extends Controller
         return response()->json(null, 204); //204 = No Content | Deletion Successful
     }
 
-    public function search(Request $request)
+    public function searchStudent(Request $request)
     {
+        /*
+
+        
+        // Validate the request data
         $request->validate([
             'query' => 'required|string',
         ]);
-    
+
+        // Get the query parameter from the request
         $query = $request->input('query');
-    
+
+        // Perform the search based on name or email
         $students = Student::where('name', 'like', "%$query%")
             ->orWhere('email', 'like', "%$query%")
             ->get();
-    
-        return StudentResource::collection($students);
+
+        // Transform the collection using a resource
+        $studentsResource = StudentResource::collection($students);
+
+        // Return a JSON response with the transformed data and an HTTP status code
+        return response()->json($studentsResource, 200);
+        
+        
+        */
     }
 
     public function import(Request $request)
