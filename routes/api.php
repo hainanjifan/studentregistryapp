@@ -20,7 +20,7 @@ use App\Http\Controllers\AuthController;
     return $request->user();
 });*/
 
-//Route::apiResource('students', StudentController::class);
+Route::apiResource('students', StudentController::class);
 
 Route::get('students', [StudentController::class, 'index'])->name('students.index');
 Route::get('students/{student}', [StudentController::class, 'show'])->name('students.show');
@@ -28,12 +28,15 @@ Route::post('students', [StudentController::class, 'store'])->name('students.sto
 Route::put('students/{student}', [StudentController::class, 'update'])->name('students.update');
 Route::delete('students/{student}', [StudentController::class, 'destroy'])->name('students.destroy');
 
+//Search Route for Students
+Route::get('students/search', [StudentController::class, 'search'])->name('students.search');
+
 //Register Route
-Route::get('/register', [AuthController::class, 'register']);
+Route::post('/register', [AuthController::class, 'register']);
 //Login Route
-Route::get('/login', [AuthController::class, 'login']);
+Route::post('/login', [AuthController::class, 'login']);
 
 //Logout Route
 Route::group(['middleware' => 'auth:api'], function(){
-    Route::get('/logout', [AuthController::class, 'logout'])->name('logout.api');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout.api');
 });
