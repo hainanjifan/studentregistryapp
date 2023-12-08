@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Students;
 use App\Http\Resources\StudentResource;
+use App\Imports\StudentsImport;
 use Maatwebsite\Excel\Facades\Excel;
 
 class StudentController extends Controller
@@ -90,50 +91,18 @@ class StudentController extends Controller
         return response()->json(null, 204); //204 = No Content | Deletion Successful
     }
 
-    public function searchStudent(Request $request)
-    {
-        /*
-
-        
-        // Validate the request data
-        $request->validate([
-            'query' => 'required|string',
-        ]);
-
-        // Get the query parameter from the request
-        $query = $request->input('query');
-
-        // Perform the search based on name or email
-        $students = Student::where('name', 'like', "%$query%")
-            ->orWhere('email', 'like', "%$query%")
-            ->get();
-
-        // Transform the collection using a resource
-        $studentsResource = StudentResource::collection($students);
-
-        // Return a JSON response with the transformed data and an HTTP status code
-        return response()->json($studentsResource, 200);
-        
-        
-        */
-    }
-
-    public function import(Request $request)
+    public function upload(Request $request)
     {
         $request->validate([
-            'file' => 'required|mimes:xlsx,csv|max:10240', // Adjust file types and size limit
+            'file' => 'required|mimes:xlsx,csv|max:10240', // Max file size of 10MB
         ]);
 
         $file = $request->file('file');
+        $path = $file->storeAs('uploads', $file->getClientOriginalName());
 
-        try {
-            Excel::import(new StudentsImport, $file);
+        // Use the Excel facade to import data from the file
+        Excel::import(new StudentsImport, $path);
 
-            // Provide feedback on successful import
-            return response()->json(['message' => 'File imported successfully'], 200);
-        } catch (\Exception $e) {
-            // Handle errors during import
-            return response()->json(['error' => 'Error importing file', 'details' => $e->getMessage()], 500);
-        }
+        return redirect()->route('students.index')->with('success', 'Students data imported successfully.');
     }
 }
