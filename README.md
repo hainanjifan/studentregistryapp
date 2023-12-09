@@ -29,4 +29,4 @@ Thank you!
 
 ## Video
 
-[![Watch the video](https://img.youtube.com/vi/AX30TWAgrs0/hqdefault.jpg)](https://www.youtube.com/embed/AX30TWAgrs0)
+[![Watch the video](https://img.youtube.com/vi/AX30TWAgrs0/1.jpg)](https://www.youtube.com/embed/AX30TWAgrs0)
