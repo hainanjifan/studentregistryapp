@@ -40,10 +40,15 @@ Route::post('/password/email', [ResetPasswordController::class, 'sendResetLinkEm
 Route::get('/password/reset/{token}', [ResetPasswordController::class, 'showResetForm'])->name('password.reset');
 Route::post('/password/reset', [ResetPasswordController::class, 'reset']);
 
-// Retrieve the form for upload files
-Route::get('/uploadFile', function () {
-    return view('uploadFile');
-})->name('uploadFile');
+//Routes that require authentication 
+Route::middleware(['auth'])->group(function () {
 
-// Add the route for uploading students
-Route::post('/upload-students', [StudentController::class, 'upload'])->name('students.upload');
+    // Retrieve the form for upload files
+    Route::get('/uploadFile', function () {
+        return view('uploadFile');
+    })->name('uploadFile');
+
+    // Add the route for uploading students
+    Route::post('/upload-students', [StudentController::class, 'upload'])->name('students.upload');
+
+});

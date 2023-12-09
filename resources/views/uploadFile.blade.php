@@ -1,18 +1,16 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
+<div class="text-center">
     <form action="{{ route('students.upload') }}" method="post" enctype="multipart/form-data">
-    @csrf
-    <input type="file" name="file" accept=".xlsx, .csv">
+        @csrf
 
-    <br>
+        <h2>Insert your file here!</h2>
+        <input type="file" name="file" accept=".xlsx, .csv">
 
-    <button type="submit">Upload File</button>
-</form>
-</body>
-</html>
+        <br>
+
+        <button type="submit" class="btn btn-primary mt-5">Upload File</button>
+    </form>
+</div>
+@endsection
