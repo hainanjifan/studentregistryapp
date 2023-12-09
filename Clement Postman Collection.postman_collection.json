@@ -1,0 +1,459 @@
+{
+	"info": {
+		"_postman_id": "998379bd-4204-42c0-90c4-8bdd17d82cdf",
+		"name": "Clement Postman Collection",
+		"description": "This is all the responses saved in a Postman Collection as per required:\n\n\"You must save all of the responses as a Postman collection, and include the Postman JSON link in your [README.md](http://readme.md/) for evaluation.\"",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "31677026"
+	},
+	"item": [
+		{
+			"name": "Logging in with an existing email",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "clementleexy@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/login",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"login"
+					]
+				},
+				"description": "\nThis API endpoint allows users to log in by sending a POST request to the specified URL. The request should include the user's email and password in the x-www-form-urlencoded format.\n\n### Request Parameters\n- **email** (text): The user's email address.\n- **password** (text): The user's password.\n\n### Response\nUpon successful execution, the API returns a status code of 200 along with the following response body:\n```json\n{\n    \"user\": {\n        \"id\": 0,\n        \"name\": \"\",\n        \"email\": \"\",\n        \"email_verified_at\": null,\n        \"created_at\": \"\",\n        \"updated_at\": \"\"\n    },\n    \"access_token\": \"\"\n}\n```\nThe response includes the user's details such as ID, name, email, and timestamps, along with an access token for authentication.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Registering a new Admin (University) Account",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Leonardo",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "leonardo@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "password_confirmation",
+							"value": "12345678",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/register?",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"register"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": null
+						}
+					]
+				},
+				"description": "\n    \n### Register User\n\nThis endpoint is used to register a new user.\n\n#### Request Body\n- `name` (text): The name of the user.\n- `email` (text): The email address of the user.\n- `password` (text): The password for the user account.\n- `password_confirmation` (text): The confirmation of the password.\n\n#### Response\n- `access_token`: A token for accessing protected resources.\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving Student Information without Login",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8000/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students"
+					]
+				},
+				"description": "Redirects the user back to the basic page due to no token credentials / not logged in"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving Student Information with Login",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "leonardo@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students"
+					]
+				},
+				"description": "This endpoint retrieves a list of students via an HTTP GET request to the specified URL. The request does not require any parameters in the x-www-form-urlencoded request body.\n\n### Response\n\n- Status: 200\n- The response body contains an array of student objects, where each object includes the \"name\" and \"address\" attributes."
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving Specific Student Information using Query (Name)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "leonardo@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students?query=Albert",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "Albert"
+						}
+					]
+				},
+				"description": "\nThis endpoint retrieves a list of students based on the provided query parameter. The query parameter is used to search for students with a matching name.\n\n### Request\n\n- Method: GET\n- URL: `http://localhost:8000/api/students`\n- Query Parameters:\n    - `query`: The name to be searched for.\n\n### Response\n\n- Status: 200 OK\n- Body:\n    ```json\n    [\n        {\n            \"name\": \"\",\n            \"address\": \"\"\n        }\n    ]\n    ```\n\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Retrieving Specific Student Information using Query (Email)",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "email",
+							"value": "leonardo@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "password",
+							"value": "12345678",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students?query=michael@gmail.com",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students"
+					],
+					"query": [
+						{
+							"key": "query",
+							"value": "michael@gmail.com"
+						}
+					]
+				},
+				"description": "\nThis endpoint makes an HTTP GET request to retrieve information about students based on the provided query parameter. The query parameter is used to filter the results based on the email address of the student.\n\n### Request\n\nThe request uses the x-www-form-urlencoded body type, but no specific parameters were provided in the last call.\n\n### Response\n\nUpon a successful execution, the endpoint returns a status code of 200 along with an array of student objects. Each student object contains the \"name\" and \"address\" attributes.\n\nExample response:\n```json\n[\n    {\n        \"name\": \"\",\n        \"address\": \"\"\n    }\n]\n```\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Creating new Student Information",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Donatello",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "12345678",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "donatello@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "course",
+							"value": "Biology",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students"
+					]
+				},
+				"description": "\nThis endpoint allows you to create a new student record by sending a POST request to the specified URL. The request should include the student's name, email, address, and course in x-www-form-urlencoded format.\n\n### Request Body\n| Key     | Type | Description |\n|---------|------|-------------|\n| name    | text | The name of the student |\n| email   | text | The email address of the student |\n| address | text | The address of the student |\n| course  | text | The course in which the student is enrolled |\n\n### Response\nUpon successful creation of the student record, the server will respond with a status code of 201 and a JSON object containing the details of the newly created student, including the unique ID, creation timestamp, and update timestamp.\n\nExample Response:\n```json\n{\n    \"name\": \"\",\n    \"email\": \"\",\n    \"address\": \"\",\n    \"course\": \"\",\n    \"updated_at\": \"\",\n    \"created_at\": \"\",\n    \"id\": 0\n}\n```\n"
+			},
+			"response": []
+		},
+		{
+			"name": "Deleting Student Information with id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Donatello",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "email",
+							"value": "12345678",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "address",
+							"value": "donatello@gmail.com",
+							"type": "text",
+							"disabled": true
+						},
+						{
+							"key": "course",
+							"value": "Biology",
+							"type": "text",
+							"disabled": true
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students/22",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students",
+						"22"
+					]
+				},
+				"description": "This API endpoint sends an HTTP DELETE request to delete a specific student with the ID 22.\n\n### Request Body\n\n- This request does not require a request body.\n    \n\n### Response\n\n- Status: 204 No Content\n- The server successfully processed the request and did not return any content."
+			},
+			"response": []
+		},
+		{
+			"name": "Editing Student Information with id",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJhdWQiOiIxIiwianRpIjoiMDBkMTZlZDI5YzQ3MzQzZDQ3MTkzZTE2NjI3MzRhMzExMTc1OWFhYWY1Yjg0MjMwYTVlM2MzMmViOGEzMGRjMzdmYTkyOTIxZjY1MzdiMDYiLCJpYXQiOjE3MDIxMDY0NTguOTg2NzY2LCJuYmYiOjE3MDIxMDY0NTguOTg2NzY4LCJleHAiOjE3MzM3Mjg4NTguOTgxNDYyLCJzdWIiOiIzIiwic2NvcGVzIjpbXX0.Tgd29hgMKxq9xnvxT1OAi6YRsHnSc0y6BoJ7IgCWg1VVBkX_MrN3xrTnIt6XEnwjuVeCa7VUuiI80s7OkfyxL0mRlJlP8hCYLleaDpMkP_VjFTT2KWdSbTmwm7mRSl5D8lHv8rxI56BBVasKybe2j933QRBoitBIJR6IezdBdugbs1cYOM4Fm_mEnTg8nUxi9yEp_GcuRjNBmCUaJnl1H_5UO1ECR92MUru7eQQ1qZyoiYRgf6-MQm3lnyC1UAf_ls2wEPeOrzfGpwcrQjz2lQD79J9BZl_hpAUtZq2jg3OjyIUaV0YMmy6mkBuURW9XhVvjpKLgUQhAqr_T3uGfUeLWZC-W8d62sWSyTAVBIKsWTlcsWq_nMKFVLzhZFSNoOGld_-Lt_h7RPycTJVEjoSipfHkPk5m0eLDifxwTeCWpr8Kg-SLAlDyKfRi7jvj3FiMO489JK_A9kR5ccKNA1lGyE-Uy0-ots0xXNGCcH7aYakcOz8ZniNVQzN9u17Uwl75vlbjtykUv91zoTZkR4j2F4d_Wz00MwMHdXxJhhgOZ6CRvQZXXeFBV6j1J-27WmJziBd3cQpOLFaVz2pDJkOHGz37_vqUgfDjBpf-DIiMVXYLcJIwx-r05obqtm1PziwS_ViPmWeqH3-tU5bGbrh2XyS9Z94BbcPzLM7Q0Des",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "Albert",
+							"type": "text"
+						},
+						{
+							"key": "email",
+							"value": "albert@gmail.com",
+							"type": "text"
+						},
+						{
+							"key": "address",
+							"value": "Johor",
+							"type": "text"
+						},
+						{
+							"key": "course",
+							"value": "Software Development",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:8000/api/students/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"students",
+						"2"
+					]
+				},
+				"description": "\nThis endpoint allows you to update the details of a specific student using the student's ID in the URL. The request should be sent as an HTTP PUT to the specified URL.\n\n### Request Body\nThe request should include the following parameters in the x-www-form-urlencoded format:\n\n- `name` (text) - The name of the student.\n- `email` (text) - The email address of the student.\n- `address` (text) - The address of the student.\n- `course` (text) - The course in which the student is enrolled.\n\n### Response\nUpon a successful update, the endpoint returns a status code of 200 along with the updated `name` and `address` of the student.\n\nExample:\n```json\n{\n    \"name\": \"\",\n    \"address\": \"\"\n}\n```\n"
+			},
+			"response": []
+		}
+	]
+}
