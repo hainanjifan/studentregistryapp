@@ -26,3 +26,7 @@ https://github.com/hainanjifan/studentregistryapp/blob/master/Clement%20Postman%
 I'm available for contact at clementleexy@gmail.com
 
 Thank you! 
+
+## Video
+
+[![Watch the video](https://img.youtube.com/vi/AX30TWAgrs0/hqdefault.jpg)](https://www.youtube.com/embed/AX30TWAgrs0)
