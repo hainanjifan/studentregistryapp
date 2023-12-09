@@ -45,10 +45,6 @@ Route::group(['middleware' => 'auth:api'], function() {
     
     //API Resource for Students (Index, Show, Update, Destroy)
     Route::apiResource('students', StudentController::class);
-
-    // Add the route for uploading students
-    Route::post('/upload-students', [StudentController::class, 'upload'])->name('students.upload');
-
     //Logout Route
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout.api');
 });

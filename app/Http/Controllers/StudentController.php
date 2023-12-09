@@ -97,12 +97,17 @@ class StudentController extends Controller
             'file' => 'required|mimes:xlsx,csv|max:10240', // Max file size of 10MB
         ]);
 
-        $file = $request->file('file');
-        $path = $file->storeAs('uploads', $file->getClientOriginalName());
-
-        // Use the Excel facade to import data from the file
-        Excel::import(new StudentsImport, $path);
-
-        return redirect()->route('students.index')->with('success', 'Students data imported successfully.');
+        try {
+            $file = $request->file('file');
+            $fileName = uniqid('students_import_') . '.' . $file->getClientOriginalExtension();
+            $path = $file->storeAs('uploads', $fileName);
+    
+            // Use the Excel facade to import data from the file
+            Excel::import(new StudentsImport, $path);
+    
+            return redirect()->route('home')->with('uploadMessage', 'Students data imported successfully.');
+        } catch (\Exception $e) {
+            return redirect()->route('home')->with('uploadMessage', 'Error importing students data: ' . $e->getMessage());
+        }
     }
 }
