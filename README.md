@@ -1,6 +1,6 @@
 ## Student Registry App
 
-Hello! My name is Clement and this is my Technical Assessment submission, uploaded to Github as per required in the instructions. This is the Student Registry App made using PHP, Laravel, Laravel Passport, and REST API. Features include Creating, Retrieving, Updating, and Deleting Student Records. This also allows University Staff to upload Excel / CSV Files to automatically detect and conduct bulk operation on the aforementioned features. 
+Hello! My name is Clement and this is my Technical Assessment submission, uploaded to Github as per required in the instructions. This is the Student Registry App made using PHP, Laravel, Laravel Passport, and REST API. Features include Creating, Retrieving, Updating, and Deleting Student Records through the API. This also allows University Staff to upload Excel / CSV Files to automatically detect and conduct bulk operation on the aforementioned features. 
 
 ## Installation
 
